@@ -4,7 +4,7 @@ const VoiceResponse = require('twilio').twiml.VoiceResponse;
 export const POST = async(request, {params}) => {
     const digit = params.digit
     const optionActions = {
-        '2': '+19295566487',
+        '2': '+260967433734',
         '3': '+17262043675',
         '4': '+16513582243',
       };
@@ -31,7 +31,7 @@ function redirectWelcome() {
       language: 'en-GB',
     });
   
-    twiml.redirect('/ivr/welcome');
+    twiml.redirect('/welcome');
   
     return twiml.toString();
   }

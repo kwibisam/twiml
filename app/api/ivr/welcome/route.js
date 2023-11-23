@@ -6,7 +6,7 @@ export const GET = async(request, response) => {
     const voiceResponse = new VoiceResponse()
 
     const gather = voiceResponse.gather({
-        action: 'ivr/menu',
+        action: '/menu',
         numDigits: 1,
         method: 'POST'
     })

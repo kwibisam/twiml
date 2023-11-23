@@ -25,7 +25,7 @@ function redirectWelcome() {
       language: 'en-GB',
     });
   
-    twiml.redirect('/ivr/welcome');
+    twiml.redirect('/welcome');
   
     return new NextResponse(twiml.toString());
   }
@@ -63,7 +63,7 @@ function listPlanets() {
     const twiml = new VoiceResponse();
   
     const gather = twiml.gather({
-      action: '/ivr/planets',
+      action: '/planets',
       numDigits: '1',
       method: 'POST',
     });
