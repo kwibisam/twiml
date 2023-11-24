@@ -31,7 +31,7 @@ function redirectWelcome() {
       language: 'en-GB',
     });
   
-    twiml.redirect('/welcome');
+    twiml.redirect('/ivr/welcome');
   
     return twiml.toString();
   }
