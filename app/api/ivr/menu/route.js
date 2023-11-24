@@ -4,7 +4,7 @@ const VoiceResponse = require('twilio').twiml.VoiceResponse;
 
 export const POST = async(request) => {
 
-  const digit = request.nextUrl.searchParams.get("digit")
+  const digit = request.nextUrl.searchParams.get('digit')
   console.log(digit)
 
   const optionActions = {
