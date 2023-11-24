@@ -1,15 +1,20 @@
-import { NextResponse } from 'next/server'
-import {VoiceResponse} from 'twilio/lib/twiml/VoiceResponse'
+import { query } from 'express';
+import { NextResponse, NextRequest } from 'next/server'
+const VoiceResponse = require('twilio').twiml.VoiceResponse;
 
-export const POST = async(request, {params}) => {
-    const digit = params.digit
+export const POST = async(request) => {
 
-    const optionActions = {
+  const digit = request.nextUrl.searchParams.get("digit")
+  console.log(digit)
+
+  const optionActions = {
         '1': giveExtractionPointInstructions,
         '2': listPlanets,
       };
 
     return (optionActions[digit]) ? optionActions[digit]() : redirectWelcome();
+    // return new NextResponse('debugging')
+
 }
 
 
@@ -63,7 +68,7 @@ function listPlanets() {
     const twiml = new VoiceResponse();
   
     const gather = twiml.gather({
-      action: '/ivr/planets',
+      action: '/api/ivr/planets',
       numDigits: '1',
       method: 'POST',
     });

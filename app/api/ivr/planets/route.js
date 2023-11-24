@@ -1,21 +1,23 @@
 import { NextResponse } from 'next/server'
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
 
-export const POST = async(request, {params}) => {
-    const digit = params.digit
-    const optionActions = {
+export const POST = async(request) => {
+
+  const digit = request.nextUrl.searchParams.get("digit")
+  const optionActions = {
         '2': '+260967433734',
         '3': '+17262043675',
         '4': '+16513582243',
-      };
+  };
 
-      if (optionActions[digit]) {
+  if (optionActions[digit]) {
         const twiml = new VoiceResponse();
         twiml.dial(optionActions[digit]);
-        return twiml.toString();
-      }
+
+        return new NextResponse(twiml.toString())
+  }
     
-      return redirectWelcome();
+  return redirectWelcome();
 }
 
 
@@ -31,8 +33,8 @@ function redirectWelcome() {
       language: 'en-GB',
     });
   
-    twiml.redirect('/ivr/welcome');
+    twiml.redirect('/api/ivr/welcome');
   
-    return twiml.toString();
+    return new NextResponse(twiml.toString())
   }
   
